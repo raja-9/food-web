@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Donation Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background: #28a745;
+            color: white;
+            padding: 1rem;
+            font-size: 1.5rem;
+        }
+        section {
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input, textarea, button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #dff0d8;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Food Donation Platform</h1>
+    </header>
+    
+    <section id="food-form">
+        <h2>List Excess Food</h2>
+        <form id="foodSubmissionForm">
+            <input type="text" id="restaurantName" placeholder="Restaurant Name" required>
+            <input type="text" id="foodItem" placeholder="Food Item" required>
+            <input type="number" id="quantity" placeholder="Quantity" required>
+            <textarea id="location" placeholder="Pickup Location" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+    
+    <section id="available-food">
+        <h2>Available Food</h2>
+        <ul id="foodList"></ul>
+    </section>
+    
+    <script>
+        document.getElementById('foodSubmissionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let restaurantName = document.getElementById('restaurantName').value;
+            let foodItem = document.getElementById('foodItem').value;
+            let quantity = document.getElementById('quantity').value;
+            let location = document.getElementById('location').value;
+            
+            let foodList = document.getElementById('foodList');
+            let listItem = document.createElement('li');
+            listItem.textContent = `${foodItem} (${quantity} servings) from ${restaurantName} - Pickup: ${location}`;
+            foodList.appendChild(listItem);
+            
+            document.getElementById('foodSubmissionForm').reset();
+        });
+    </script>
+</body>
+</html>
